@@ -30,6 +30,11 @@ public class Utility {
 	// 9- Capturing message and verify
 	// 10-Soft Assert
 
+	public void demoMethod()
+	{
+
+	}
+
 
 	public static void verifyPartialText(WebDriver driver, By byLocator, String expectedText)
 	{

@@ -49,6 +49,7 @@ public class LoginPage {
 		Utility.waitForWebElement(driver, password).sendKeys("admin123");
 	}
 
+
 	public void clickOnLoginButton()
 	{
 		Utility.waitForWebElement(driver, loginButton).click();

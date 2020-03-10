@@ -19,6 +19,7 @@ public class LogoutPage {
 
 	By logoutText = By.xpath("//a[text()='Logout']");
 
+
 	public void logOutFromApplicationWithAdminRole()
 	{
 		Utility.waitForWebElement(driver, adminText).click();

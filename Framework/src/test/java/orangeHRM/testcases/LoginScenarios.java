@@ -13,10 +13,11 @@ public class LoginScenarios extends BaseClass {
 	LoginPage login;
 	LogoutPage logout;
 
+
 	@Test(priority = 0)
 	public void verifyPage()
 	{
-		System.out.println("Report 1 >" + report);
+		// System.out.println("Report 1 >" + report);
 
 		login = PageFactory.initElements(driver, LoginPage.class);
 
@@ -27,6 +28,7 @@ public class LoginScenarios extends BaseClass {
 		login.verifyUrlBeforeLogin();
 
 		logger.info("Validating url");
+
 	}
 
 	@Test(priority = 1, dependsOnMethods = "verifyPage")

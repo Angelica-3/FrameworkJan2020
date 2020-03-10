@@ -3,9 +3,10 @@ package orangeHRM.pages;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.os.WindowsUtils;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
@@ -21,7 +22,7 @@ import orangeHRM.helper.Utility;
 public class BaseClass {
 
 	public WebDriver driver;
-	public ExtentReports report;
+	public static ExtentReports report;
 	public ExtentTest logger;
 
 	@BeforeSuite
@@ -45,7 +46,7 @@ public class BaseClass {
 
 		if (result.getStatus() == ITestResult.SUCCESS)
 		{
-			System.out.println("Log:INFO- Test Status is Passed");
+			System.out.println("Log:INFO- Test Executed-Test Status is Passed");
 
 		} else if (result.getStatus() == ITestResult.FAILURE)
 		{
@@ -95,15 +96,26 @@ public class BaseClass {
 		System.out.println("Log:INFO- Browser and application is ready");
 	}
 
+	// If need to close 1 driver
+	/*
+	 * @AfterSuite public void tearDown() {
+	 * System.out.println("Log:INFO- Terminating browser");
+	 * 
+	 * BrowserFactory.closeApplication(driver);
+	 * 
+	 * System.out.println("Log:INFO- Browser terminated"); }
+	 */
 
-	@AfterClass
+
+	// If need to close several drivers after multiple tests
+
+	@AfterSuite
 	public void tearDown()
 	{
 		System.out.println("Log:INFO- Terminating browser");
 
-		BrowserFactory.closeApplication(driver);
+		WindowsUtils.killByName("chrome.exe");
 
 		System.out.println("Log:INFO- Browser terminated");
 	}
-
 }

@@ -65,7 +65,7 @@ public class BaseClass {
 			try
 			{
 				logger.pass("Test Passed",
-						MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.getScreenshot(driver)).build());
+						MediaEntityBuilder.createScreenCaptureFromPath(Utility.getScreenshot(driver)).build());
 			} catch (IOException e)
 			{
 

@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -16,7 +17,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import orangeHRM.factories.BrowserFactory;
-import orangeHRM.factories.DataProviderFactory;
 import orangeHRM.helper.Utility;
 
 public class BaseClass {
@@ -91,31 +91,24 @@ public class BaseClass {
 
 	}
 
-
+	@Parameters(
+	{ "Browser", "AppURL" })
 	@BeforeClass
-	public void setUp()
+	public void setUp(String browser, String appurl)
 	{
 		System.out.println("Log:INFO- Setting up Browser and Application");
 
-		driver = BrowserFactory.getApplication(DataProviderFactory.getConfig().getValue("Browser"),
-				DataProviderFactory.getConfig().getValue("QAEnv"));
+		// driver=
+		// BrowserFactory.getApplication(DataProviderFactory.getConfig().getValue("Browser"),
+		// DataProviderFactory.getConfig().getValue("QAEnv"));
+
+		driver = BrowserFactory.getApplication(browser, appurl);
 
 		System.out.println("Log:INFO- Browser and application is ready");
 	}
 
-	// If need to close 1 driver
-	/*
-	 * @AfterSuite public void tearDown() {
-	 * System.out.println("Log:INFO- Terminating browser");
-	 * 
-	 * BrowserFactory.closeApplication(driver);
-	 * 
-	 * System.out.println("Log:INFO- Browser terminated"); }
-	 */
-
 
 	// If need to close several drivers after multiple tests
-
 	@AfterSuite
 	public void tearDown()
 	{
